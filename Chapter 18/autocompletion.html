@@ -1,0 +1,34 @@
+<html>
+    <head>
+        <title>Autocomplete</title>
+    </head>
+    <body>
+        <input type="text" id="field">
+        <div id="suggestions" style="cursor: pointer"></div>
+        <script>
+            // Builds up an array with global variable names, like
+            // 'alert', 'document', and 'scrollTo'
+            let terms = []
+            for (var name in window)
+                terms.push(name)
+            let textfield = document.getElementById("field")
+            let suggestions = document.getElementById("suggestions")
+            //checks if typed input starts with any of the suggestions
+            textfield.addEventListener("input", () => {
+                let matching = terms.filter((term) => {
+                    return term.indexOf(textfield.value) == 0
+            })
+            suggestions.textContent = ""
+            matching.slice(0, 5).forEach((term) => {
+                let node = document.createElement("div")
+                node.textContent = term
+                node.addEventListener("click", () => {
+                    textfield.value = term
+                    suggestions.textContent = ""
+                })
+                suggestions.appendChild(node);
+                })
+            })
+        </script>
+    </body>
+</html>

@@ -1,0 +1,23 @@
+<html>
+    <head>
+        <title>Workbench</title>
+    </head>
+    <body>
+    <textarea id="code">return "hi";</textarea>
+    <button id="button">Run</button>
+    <pre id="output"></pre>
+
+    <script>
+    document.getElementById("button").addEventListener("click", () => {
+        let code = document.getElementById("code")
+            let output = document.getElementById("output")
+            try {
+                output.innerText = eval(code.value)
+            }
+            catch(error) {
+                output.innerText = error
+            }
+        })
+    </script>
+    </body>
+</html>
